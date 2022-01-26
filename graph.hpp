@@ -97,9 +97,6 @@ class Graph {
             init();
             initialized_ = true;
         }
-        if (sourceVertices.size() == 1) {
-            return {sourceVertices[0]};
-        }
         HashMap<T, int> vertexToFairScore;
         for (const auto& pair : adjacencyList_) {
             const auto& vertex = pair.first;
@@ -118,7 +115,7 @@ class Graph {
 
    private:
     HashMap<T, std::forward_list<std::pair<T, int>>, HashFunc> adjacencyList_;
-    HashMap<T, HashMap<T, int>> dijkstraResults_;
+    HashMap<T, HashMap<T, int, HashFunc>, HashFunc> dijkstraResults_;
     bool initialized_;
 
     void addEdgeImpl(const T& vertex1, const T& vertex2, int weight) {
