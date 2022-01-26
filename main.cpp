@@ -4,7 +4,7 @@
 #include <vector>
 #include <unordered_map>
 
-#include "ds.hpp"
+#include "graph.hpp"
 
 #define FMT_HEADER_ONLY
 #include <fmt/color.h>
@@ -17,20 +17,6 @@ void join(std::vector<int>& srcVertices);
 void leave(std::vector<int>& srcVertices);
 template <typename Container>
 void printContainer(const Container& c);
-
-template <template <typename...> typename Container, typename... Args>
-std::ostream& operator<<(std::ostream& out, const Container<Args...>& c) {
-    out << '[';
-    if (!c.empty()) {
-        for (auto i = c.begin();;) {
-            out << *i;
-            if (++i == c.end()) break;
-            out << ", ";
-        }
-    }
-    out << ']';
-    return out;
-}
 
 int main() {
     printHeader();
