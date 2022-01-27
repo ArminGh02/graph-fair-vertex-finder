@@ -44,7 +44,11 @@ class HashMapIter {
             do {
                 ++currentBucket_;
             } while (currentBucket_->empty() && currentBucket_ != lastBucket_);
-            it_ = currentBucket_->begin();
+            if (currentBucket_->empty()) {
+                it_ = currentBucket_->end();
+            } else {
+                it_ = currentBucket_->begin();
+            }
         }
         return *this;
     }
@@ -95,7 +99,11 @@ class HashMapConstIter {
             do {
                 ++currentBucket_;
             } while (currentBucket_->empty() && currentBucket_ != lastBucket_);
-            it_ = currentBucket_->begin();
+            if (currentBucket_->empty()) {
+                it_ = currentBucket_->end();
+            } else {
+                it_ = currentBucket_->begin();
+            }
         }
         return *this;
     }
