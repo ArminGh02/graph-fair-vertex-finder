@@ -27,6 +27,7 @@ int main() {
     getGraph(g);
 
     fmt::print(
+        fmt::fg(fmt::color::green),
         "Available commands:\n"
         "join <vertex number>\n"
         "left <vertex number>\n"
