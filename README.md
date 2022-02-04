@@ -16,14 +16,18 @@ A fair vertex in a graph with a set of source vertices is a vertex with minimum 
 Consider the set of source vertices be: `{A, B, C, ...}`
 The fair score for vertex `V` is calculated using below formula:
 
-`FairScore(V) = |Distance(A, V) - Distance(B, V)| + |Distance(A, V) - Distance(C, V)| + |Distance(B, V) - Distance(C, V)| + ...`
+```
+FairScore(V) = |Distance(A, V) - Distance(B, V)| + |Distance(A, V) - Distance(C, V)| + |Distance(B, V) - Distance(C, V)| + ...
+```
 
 ## Example
 Input graph should be of this form:
-`<number of vertices> <number of edges>`
-`<space-separated list of vertices numbers>`
-`<first vertex of edge> <second vertex of edge> <weight of edge>`
-`...`
+```
+<number of vertices> <number of edges>
+<space-separated list of vertices numbers>
+<first vertex of edge> <second vertex of edge> <weight of edge>
+...
+```
 ![Example](/doc/screenshot.png "Example")
 
 ## Compile
