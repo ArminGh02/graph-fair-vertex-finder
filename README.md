@@ -13,7 +13,9 @@ It calculates the fair vertex (vertices) in a non-negative weighted undirected g
 
 ## Definition of Fair Vertex
 A fair vertex in a graph with a set of source vertices is a vertex with minimum fair score.
+
 Consider the set of source vertices be: `{A, B, C, ...}`
+
 The fair score for vertex `V` is calculated using below formula:
 
 ```
