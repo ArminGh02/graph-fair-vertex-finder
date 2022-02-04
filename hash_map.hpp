@@ -1,7 +1,6 @@
 #include <algorithm>
 #include <forward_list>
 #include <initializer_list>
-#include <iostream>
 #include <iterator>
 #include <stdexcept>
 #include <utility>
@@ -178,7 +177,7 @@ class HashMap {
                 return pair.second;
             }
         }
-        bucket.emplace_front(key, V());
+        bucket.emplace_front(key, value_type());
         ++size_;
         return bucket.front().second;
     }
@@ -233,7 +232,7 @@ class HashMap {
     std::forward_list<value_type>* buckets_;
     size_type size_;
 
-    size_type index(const K& key) const {
+    size_type index(const key_type& key) const {
         return hasher_(key) & (bucketsCount_ - 1);
     }
 };
