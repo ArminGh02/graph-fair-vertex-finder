@@ -1,3 +1,6 @@
+#ifndef GRAPH_HPP
+#define GRAPH_HPP
+
 #include <cmath>
 #include <forward_list>
 #include <limits>
@@ -134,3 +137,5 @@ class Graph {
 };
 
 }  // namespace graph
+
+#endif  // GRAPH_HPP

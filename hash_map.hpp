@@ -1,3 +1,6 @@
+#ifndef HASH_MAP_HPP
+#define HASH_MAP_HPP
+
 #include <algorithm>
 #include <forward_list>
 #include <initializer_list>
@@ -238,3 +241,5 @@ class HashMap {
 };
 
 }  // namespace ds
+
+#endif  // HASH_MAP_HPP
