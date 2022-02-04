@@ -9,7 +9,7 @@
 
 ## About
 This was my final project for Data Structures and Algorithms course at Amirkabir University.
-It calculates the fair vertex (vertices) in a non-negative weighted graph given some source vertices.
+It calculates the fair vertex (vertices) in a non-negative weighted undirected graph given some source vertices.
 
 ## Definition of Fair Vertex
 A fair vertex in a graph with a set of source vertices is a vertex with minimum fair score.
