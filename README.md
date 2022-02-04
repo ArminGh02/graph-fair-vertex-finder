@@ -37,5 +37,5 @@ g++ main.cpp -I ".\lib\fmt-8.1.1\include\"
 ```
 
 ## To Do
-I implemented a minimal **[STL-like hash map](hash_map.cpp)** data structure that I wish to extend.
+I implemented a minimal **[STL-like hash map](hash_map.hpp)** data structure that I wish to extend.
 If you are a C++ fan, feel free to contribute.
