@@ -169,7 +169,7 @@ public:
         if (empty()) {
             return end();
         }
-        for (int i = 0; i < bucketsCount_; ++i) {
+        for (size_type i = 0; i < bucketsCount_; ++i) {
             if (!buckets_[i].empty()) {
                 return iterator(&buckets_[i], &buckets_[bucketsCount_ - 1], buckets_[i].begin());
             }
@@ -181,7 +181,7 @@ public:
         if (empty()) {
             return end();
         }
-        for (int i = 0; i < bucketsCount_; ++i) {
+        for (size_type i = 0; i < bucketsCount_; ++i) {
             if (!buckets_[i].empty()) {
                 return const_iterator(&buckets_[i], &buckets_[bucketsCount_ - 1], buckets_[i].begin());
             }
