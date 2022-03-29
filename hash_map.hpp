@@ -14,32 +14,22 @@ namespace detail {
 
 template <typename Map>
 class HashMapIter {
-   public:
+public:
     using iterator_category = std::forward_iterator_tag;
-    using value_type = typename Map::value_type;
+    using value_type        = typename Map::value_type;
 
     HashMapIter(std::forward_list<value_type>* currentBucket,
                 std::forward_list<value_type>* lastBucket,
                 typename std::forward_list<value_type>::iterator it)
-        : currentBucket_(currentBucket),
-          lastBucket_(lastBucket),
-          it_(it) {}
+        : currentBucket_(currentBucket), lastBucket_(lastBucket), it_(it) {}
 
-    friend bool operator==(const HashMapIter& lhs, const HashMapIter& rhs) {
-        return lhs.it_ == rhs.it_;
-    }
+    friend bool operator==(const HashMapIter& lhs, const HashMapIter& rhs) { return lhs.it_ == rhs.it_; }
 
-    friend bool operator!=(const HashMapIter& lhs, const HashMapIter& rhs) {
-        return !(lhs == rhs);
-    }
+    friend bool operator!=(const HashMapIter& lhs, const HashMapIter& rhs) { return !(lhs == rhs); }
 
-    value_type& operator*() const {
-        return *it_;
-    }
+    value_type& operator*() const { return *it_; }
 
-    typename std::forward_list<value_type>::iterator operator->() const {
-        return it_;
-    }
+    typename std::forward_list<value_type>::iterator operator->() const { return it_; }
 
     HashMapIter& operator++() {
         if (++it_ == currentBucket_->end()) {
@@ -63,7 +53,7 @@ class HashMapIter {
         return temp;
     }
 
-   private:
+private:
     std::forward_list<value_type>* currentBucket_;
     std::forward_list<value_type>* lastBucket_;
     typename std::forward_list<value_type>::iterator it_;
@@ -71,32 +61,22 @@ class HashMapIter {
 
 template <typename Map>
 class HashMapConstIter {
-   public:
+public:
     using iterator_category = std::forward_iterator_tag;
-    using value_type = typename Map::value_type;
+    using value_type        = typename Map::value_type;
 
     HashMapConstIter(std::forward_list<value_type>* currentBucket,
                      std::forward_list<value_type>* lastBucket,
                      typename std::forward_list<value_type>::const_iterator it)
-        : currentBucket_(currentBucket),
-          lastBucket_(lastBucket),
-          it_(it) {}
+        : currentBucket_(currentBucket), lastBucket_(lastBucket), it_(it) {}
 
-    friend bool operator==(const HashMapConstIter& lhs, const HashMapConstIter& rhs) {
-        return lhs.it_ == rhs.it_;
-    }
+    friend bool operator==(const HashMapConstIter& lhs, const HashMapConstIter& rhs) { return lhs.it_ == rhs.it_; }
 
-    friend bool operator!=(const HashMapConstIter& lhs, const HashMapConstIter& rhs) {
-        return !(lhs == rhs);
-    }
+    friend bool operator!=(const HashMapConstIter& lhs, const HashMapConstIter& rhs) { return !(lhs == rhs); }
 
-    const value_type& operator*() const {
-        return *it_;
-    }
+    const value_type& operator*() const { return *it_; }
 
-    typename std::forward_list<value_type>::const_iterator operator->() const {
-        return it_;
-    }
+    typename std::forward_list<value_type>::const_iterator operator->() const { return it_; }
 
     HashMapConstIter& operator++() {
         if (++it_ == currentBucket_->end()) {
@@ -120,7 +100,7 @@ class HashMapConstIter {
         return temp;
     }
 
-   private:
+private:
     std::forward_list<value_type>* currentBucket_;
     std::forward_list<value_type>* lastBucket_;
     typename std::forward_list<value_type>::const_iterator it_;
@@ -130,20 +110,17 @@ class HashMapConstIter {
 
 template <typename K, typename V, typename HashFunc = std::hash<K>>
 class HashMap {
-   public:
-    using key_type = K;
+public:
+    using key_type    = K;
     using mapped_type = V;
-    using value_type = std::pair<K, V>;
-    using size_type = std::size_t;
+    using value_type  = std::pair<K, V>;
+    using size_type   = std::size_t;
 
-    using iterator = detail::HashMapIter<HashMap>;
+    using iterator       = detail::HashMapIter<HashMap>;
     using const_iterator = detail::HashMapConstIter<HashMap>;
 
     HashMap()
-        : hasher_(HashFunc()),
-          bucketsCount_(1024),
-          buckets_(new std::forward_list<value_type>[1024]()),
-          size_(0) {}
+        : hasher_(HashFunc()), bucketsCount_(1024), buckets_(new std::forward_list<value_type>[1024]()), size_(0) {}
 
     void insert(const key_type& key, const mapped_type& val) {
         if (find(key) != end()) {
@@ -210,9 +187,7 @@ class HashMap {
     }
 
     iterator end() {
-        return iterator(&buckets_[bucketsCount_ - 1],
-                        &buckets_[bucketsCount_ - 1],
-                        buckets_[bucketsCount_ - 1].end());
+        return iterator(&buckets_[bucketsCount_ - 1], &buckets_[bucketsCount_ - 1], buckets_[bucketsCount_ - 1].end());
     }
 
     const_iterator end() const {
@@ -221,23 +196,17 @@ class HashMap {
                               buckets_[bucketsCount_ - 1].end());
     }
 
-    size_type size() const {
-        return size_;
-    }
+    size_type size() const { return size_; }
 
-    bool empty() const {
-        return size_ == 0;
-    }
+    bool empty() const { return size_ == 0; }
 
-   private:
+private:
     HashFunc hasher_;
     size_type bucketsCount_;
     std::forward_list<value_type>* buckets_;
     size_type size_;
 
-    size_type index(const key_type& key) const {
-        return hasher_(key) & (bucketsCount_ - 1);
-    }
+    size_type index(const key_type& key) const { return hasher_(key) & (bucketsCount_ - 1); }
 };
 
 }  // namespace ds

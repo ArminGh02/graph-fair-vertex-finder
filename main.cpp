@@ -1,8 +1,8 @@
 #include <algorithm>
 #include <iostream>
 #include <sstream>
-#include <vector>
 #include <unordered_map>
+#include <vector>
 
 #include "graph.hpp"
 
@@ -26,14 +26,13 @@ int main() {
     ds::Graph<int> g;
     getGraph(g);
 
-    fmt::print(
-        fmt::fg(fmt::color::green),
-        "Available commands:\n"
-        "join <vertex number>\n"
-        "left <vertex number>\n"
-        "test\t\t// prints all the vertices of the given graph\n"
-        "calc\t\t// calculates the fair vertices\n"
-        "exit\t\t// exits the program\n");
+    fmt::print(fmt::fg(fmt::color::green),
+               "Available commands:\n"
+               "join <vertex number>\n"
+               "left <vertex number>\n"
+               "test\t\t// prints all the vertices of the given graph\n"
+               "calc\t\t// calculates the fair vertices\n"
+               "exit\t\t// exits the program\n");
 
     std::string command;
     std::vector<int> srcVertices;
@@ -115,7 +114,9 @@ void printContainer(const Container& c) {
     if (!c.empty()) {
         for (auto i = c.begin();;) {
             fmt::print("{}", *i);
-            if (++i == c.end()) break;
+            if (++i == c.end()) {
+                break;
+            }
             fmt::print(", ");
         }
     }
