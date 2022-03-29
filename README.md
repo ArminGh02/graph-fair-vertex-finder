@@ -30,7 +30,7 @@ Input graph should be of this form:
 <first vertex of edge> <second vertex of edge> <weight of edge>
 ...
 ```
-![Example](/doc/screenshot.png "Example")
+![Example](/screenshot/screenshot.png "Example")
 
 ## Compile
 Simply run:
