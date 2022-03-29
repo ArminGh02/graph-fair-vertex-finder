@@ -22,6 +22,7 @@ public:
                 std::forward_list<value_type>* lastBucket,
                 typename std::forward_list<value_type>::iterator it)
         : currentBucket_(currentBucket), lastBucket_(lastBucket), it_(it) {}
+    ~HashMapIter() = default;
 
     friend bool operator==(const HashMapIter& lhs, const HashMapIter& rhs) { return lhs.it_ == rhs.it_; }
 
@@ -69,6 +70,7 @@ public:
                      std::forward_list<value_type>* lastBucket,
                      typename std::forward_list<value_type>::const_iterator it)
         : currentBucket_(currentBucket), lastBucket_(lastBucket), it_(it) {}
+    ~HashMapConstIter() = default;
 
     friend bool operator==(const HashMapConstIter& lhs, const HashMapConstIter& rhs) { return lhs.it_ == rhs.it_; }
 
@@ -121,6 +123,7 @@ public:
 
     HashMap()
         : hasher_(HashFunc()), bucketsCount_(1024), buckets_(new std::forward_list<value_type>[1024]()), size_(0) {}
+    ~HashMap() { delete[] buckets_; }
 
     void insert(const key_type& key, const mapped_type& val) {
         if (find(key) != end()) {

@@ -41,6 +41,7 @@ template <typename T, typename HashFunc = std::hash<T>>
 class Graph {
 public:
     Graph() : initialized_(false) {}
+    ~Graph() = default;
 
     void addEdge(const T& vertex1, const T& vertex2, int weight) {
         addEdgeImpl(vertex1, vertex2, weight);
@@ -60,7 +61,7 @@ public:
         for (const auto& pair : adjacencyList_) {
             const auto& vertex = pair.first;
             visited[vertex]    = false;
-            distances[vertex]  = INT32_MAX;
+            distances[vertex]  = std::numeric_limits<int>::max();
         }
 
         using DistanceVertex = std::pair<int, T>;
@@ -104,8 +105,8 @@ public:
             const auto& vertex        = pair.first;
             const auto& distances     = dijkstraResults_.find(vertex)->second;
             vertexToFairScore[vertex] = 0;
-            for (int i = 0; i < sourceVertices.size(); ++i) {
-                for (int j = i + 1; j < sourceVertices.size(); ++j) {
+            for (std::size_t i = 0; i < sourceVertices.size(); ++i) {
+                for (auto j = i + 1; j < sourceVertices.size(); ++j) {
                     auto a = distances.find(sourceVertices[i])->second;
                     auto b = distances.find(sourceVertices[j])->second;
                     vertexToFairScore[vertex] += std::abs(a - b);
