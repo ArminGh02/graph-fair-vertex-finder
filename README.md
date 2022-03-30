@@ -32,11 +32,8 @@ Input graph should be of this form:
 ```
 ![Example](/screenshot/screenshot.png "Example")
 
-## Compile
-Simply run:
-```
-g++ main.cpp -I ".\lib\fmt-8.1.1\include\"
-```
+## Requirement
+It only requires **[fmt](https://github.com/fmtlib/fmt)**.
 
 ## To Do
 I implemented a minimal **[STL-like hash map](hash_map.hpp)** data structure that I wish to extend.
